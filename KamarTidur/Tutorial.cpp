@@ -17,6 +17,7 @@ using namespace std;
 float cam_angle = 0;
 float cam_x = 0;
 float cam_y = 0;
+float cam_z = 0;
 float cam_height = 6;
 float cam_rotate_speed = 0.003;
 float cam_distance = 40;
@@ -342,7 +343,7 @@ void floor() {
 }
 
 void bed() {
-    //kasur
+    //bedframe
     lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
@@ -353,7 +354,7 @@ void bed() {
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 
-    //tiang kasur
+    //penyangga kasur
     lighting(bed_head_no_mat, bed_head_ambient, bed_head_diffuse, bed_head_specular, bed_head_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
@@ -398,6 +399,30 @@ void bed() {
     glDisable(GL_TEXTURE_2D);
 }
 
+void table() {
+    //table bawah laci
+    lighting(bed_head_no_mat, bed_head_ambient, bed_head_diffuse, bed_head_specular, bed_head_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+    glPushMatrix();
+    glTranslatef(36, 1, 7); //posisi
+    glScalef(5, 4, 4); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //permukaan atas
+    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+    glPushMatrix();
+    glTranslatef(36, 3, 7); //posisi
+    glScalef(5.2, 0.5, 4.2); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+
 void input_keyboard(unsigned char key, int x, int y) {
     switch (key)
     {
@@ -429,11 +454,6 @@ void input_keyboard(unsigned char key, int x, int y) {
         break;
     case '1':
         ambient = !ambient;
-        break;
-    case '2':
-        diffuse = !diffuse;
-        break;
-    case '3':
         specular = !specular;
         break;
     case '0':
@@ -466,6 +486,7 @@ void display(void) {
     wall();
     floor();
     bed();
+    table();
     
 
     //lighting in scene
