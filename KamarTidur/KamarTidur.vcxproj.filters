@@ -20,25 +20,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="E:\KULIAH\SEM 5\GrafKom\dinding.bmp">
+    <Image Include="blackwood.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="E:\KULIAH\SEM 5\GrafKom\kasur.bmp">
+    <Image Include="mural.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="E:\KULIAH\SEM 5\GrafKom\lantai.bmp">
+    <Image Include="bedsheet.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="E:\KULIAH\SEM 5\GrafKom\bedframe.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="E:\KULIAH\SEM 5\GrafKom\bedframe.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="bedframe.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="wallpaper.bmp">
+    <Image Include="floor.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -143,9 +143,8 @@ void loadTexture(char* file_name, int tex_id) {
         exit(1);
     }
 
-    glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[tex_id]);
-    glTexImage2D(GL_TEXTURE_2D, 0, 3, image1->sizeX, image1->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, image1->data);
+    glTexImage2D(GL_TEXTURE_2D, 0, 4, image1->sizeX, image1->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, image1->data);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //skala linear kalo gambar > texture
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //skala linear kalo gambar < texture
 
@@ -375,6 +374,28 @@ void bed() {
     cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
+
+    //bantal 1
+    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+    glPushMatrix();
+    glTranslatef(35, 3.8, -1.6); //posisi
+    glScalef(3, 0.5, 3); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //bantal 2
+    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[0]);
+    glPushMatrix();
+    glTranslatef(35, 3.8, 1.6); //posisi
+    glScalef(3, 0.5, 3); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
 }
 
 void input_keyboard(unsigned char key, int x, int y) {
@@ -441,9 +462,9 @@ void display(void) {
 
     gluLookAt(cam_x, cam_height, cam_y, cam_x + cos(cam_angleX), cam_height, cam_y + sin(cam_angleY), 0, 1, 0);
 
+    
     wall();
     floor();
-
     bed();
     
 
@@ -500,10 +521,10 @@ int main(int argc, char** argv) {
 
     
     glGenTextures(10, texture);
-    loadTexture("kasur.bmp", 0);
-    loadTexture("wallpaper.bmp", 1);
-    loadTexture("bedframe.bmp", 2);
-    loadTexture("lantai.bmp", 3);
+    loadTexture("bedsheet.bmp", 0);
+    loadTexture("mural.bmp", 1);
+    loadTexture("blackwood.bmp", 2);
+    loadTexture("floor.bmp", 3);
 
     glutDisplayFunc(display);
     glutKeyboardFunc(input_keyboard);
