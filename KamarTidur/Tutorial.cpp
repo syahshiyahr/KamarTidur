@@ -39,7 +39,7 @@ GLboolean specular = true;
 GLuint texture[10];
 
 GLfloat no_light[] = { 0.0, 0.0, 0.0, 1.0 };
-GLfloat light_ambient[] = { 1.0, 1.0, 1.0, 1.0 }; //lighting sesuai posisi, menyesuaikan dengan koordinat ruangan
+GLfloat light_ambient[] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat light_position[] = { 2.0, 25.0, 3.0, 1.0 };
@@ -152,7 +152,7 @@ void loadTexture(char* file_name, int tex_id) {
     }
 
     glBindTexture(GL_TEXTURE_2D, texture[tex_id]);
-    glTexImage2D(GL_TEXTURE_2D, 0, 4, image1->sizeX, image1->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, image1->data);
+   glTexImage2D(GL_TEXTURE_2D, 0, 4, image1->sizeX, image1->sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, image1->data);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //skala linear kalo gambar > texture
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //skala linear kalo gambar < texture
 
@@ -210,22 +210,22 @@ void cube(GLfloat size) {
 
     glBegin(GL_QUADS);
 
-    ////Quad 1 (dinding bawah, kasur bawah)
-    //glNormal3f(n1_x, n1_y, n1_z);
+    //Quad 1 bagian bawah cube
+    glNormal3f(n1_x, n1_y, n1_z);
 
-    //glTexCoord2f(0, 0);
-    //glVertex3f(x1, y1, z1);
+    glTexCoord2f(0, 0);
+    glVertex3f(x1, y1, z1);
 
-    //glTexCoord2f(1, 0);
-    //glVertex3f(x2, y2, z2);
+    glTexCoord2f(1, 0);
+    glVertex3f(x2, y2, z2);
 
-    //glTexCoord2f(1, 1);
-    //glVertex3f(x3, y3, z3);
+    glTexCoord2f(1, 1);
+    glVertex3f(x3, y3, z3);
 
-    //glTexCoord2f(0, 1);
-    //glVertex3f(x4, y4, z4);
+    glTexCoord2f(0, 1);
+    glVertex3f(x4, y4, z4);
 
-    //Quad 2 (atas kasur & tiang kasur)
+    //Quad 2 bagian atas cube
     glNormal3f(n2_x, n2_y, n2_z);
 
     glTexCoord2f(0, 0);
@@ -240,7 +240,7 @@ void cube(GLfloat size) {
     glTexCoord2f(0, 1);
     glVertex3f(x5, y5, z5);
 
-    //Quad 3 (dinding kanan kiri, kasur kiri)
+    //Quad 3 bagian kiri cube
     glNormal3f(n3_x, n3_y, n3_z);
 
     glTexCoord2f(0, 0);
@@ -255,7 +255,7 @@ void cube(GLfloat size) {
     glTexCoord2f(0, 1);
     glVertex3f(x1, y1, z1);
 
-    //Quad 4 (kasur kiri)
+    //Quad 4 bagian kanan cube
     glNormal3f(n4_x, n4_y, n4_z);
 
     glTexCoord2f(0, 0);
@@ -270,7 +270,7 @@ void cube(GLfloat size) {
     glTexCoord2f(0, 1);
     glVertex3f(x3, y3, z3);
 
-    //Quad 5 (kasur belakang)
+    //Quad 5 bagian belakang cube
     glNormal3f(n5_x, n5_y, n5_z);
 
     glTexCoord2f(0, 0);
@@ -285,7 +285,7 @@ void cube(GLfloat size) {
     glTexCoord2f(0, 1);
     glVertex3f(x2, y2, z2);
 
-    //Quad 6 (dinding belakang, kasur depan, tiang kasur depan)
+    //Quad 6 bagian depan cube
     glNormal3f(n6_x, n6_y, n6_z);
 
     glTexCoord2f(0, 0);
@@ -301,31 +301,6 @@ void cube(GLfloat size) {
     glVertex3f(x5, y5, z5);
 
     glEnd();
-}
-
-//sasi
-void table() {
-    //table bawah laci
-    lighting(bed_head_no_mat, bed_head_ambient, bed_head_diffuse, bed_head_specular, bed_head_shiness);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[2]);
-    glPushMatrix();
-    glTranslatef(36, 1, 7); //posisi
-    glScalef(5, 4, 4); //ukuran
-    cube(1);
-    glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
-
-    //permukaan atas
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[2]);
-    glPushMatrix();
-    glTranslatef(36, 3, 7); //posisi
-    glScalef(5.2, 0.5, 4.2); //ukuran
-    cube(1);
-    glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
 }
 
 //sasi
@@ -397,6 +372,58 @@ void bed() {
     cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
+}
+
+//sasi
+void table() {
+    //table bawah laci
+    lighting(bed_head_no_mat, bed_head_ambient, bed_head_diffuse, bed_head_specular, bed_head_shiness); //menggunakan lighting yg sama dengan tiang kasur dengan lighting yang lebih gelap
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+    glPushMatrix();
+    glTranslatef(36, 1, 7); //posisi
+    glScalef(5, 4, 4); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //permukaan atas
+    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness); //menggunakan lighting yang sama dengan kasur bawah dengan lighting yang lebih terang
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+    glPushMatrix();
+    glTranslatef(36, 3, 7); //posisi
+    glScalef(5.2, 0.5, 4.2); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+
+//sasi
+void objekAtasMeja() {
+    //buku ats
+    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness); 
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[6]);
+    glPushMatrix();
+    glTranslatef(37.5, 3.8, 7); //posisi
+    glScalef(1, 0.4, 1.5); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //buku bawah
+    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[7]);
+    glPushMatrix();
+    glTranslatef(37, 3.4, 7.2); //posisi
+    glScalef(1, 0.4, 1.5); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+
 }
 
 //hafez
@@ -574,13 +601,14 @@ void display(void) {
 
     gluLookAt(cam_x, cam_height, cam_y, cam_x + cos(cam_angleX), cam_height, cam_y + sin(cam_angleY), 0, 1, 0);
 
-    //menampilkan void
+    //menampilkan object 3D
     wall();
     floor();
     bed();
     standingLamp();
     atap();
     table();
+    objekAtasMeja();
 
     //lighting in scene
     glEnable(GL_LIGHT0);
@@ -619,7 +647,7 @@ int main(int argc, char** argv) {
     glutInitWindowSize(1000, 800);
     glutInitWindowPosition(100, 100);
 
-    glutCreateWindow("Ruang Tidur");
+    glutCreateWindow("Kamar Tidur");
     initRendering();
 
     glClearColor(0, 0, 0, 1);
@@ -633,14 +661,16 @@ int main(int argc, char** argv) {
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
-    //yg ini jg masing2 obj
+    //mengambil file untuk texture
     glGenTextures(10, texture);
     loadTexture("bedsheet.bmp", 0);
     loadTexture("mural.bmp", 1);
     loadTexture("blackwood.bmp", 2);
     loadTexture("floor.bmp", 3);
-    loadTexture("pintu.bmp", 4);
-    loadTexture("image.png", 5);
+    loadTexture("floor.bmp", 5);
+    loadTexture("book2.bmp", 6);
+    loadTexture("book.bmp", 7);
+    
 
     glutDisplayFunc(display);
     glutKeyboardFunc(input_keyboard);

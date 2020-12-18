@@ -157,10 +157,10 @@
   <ItemGroup>
     <Image Include="bedsheet.bmp" />
     <Image Include="blackwood.bmp" />
+    <Image Include="book.bmp" />
+    <Image Include="book2.bmp" />
     <Image Include="floor.bmp" />
-    <Image Include="Image.png" />
     <Image Include="mural.bmp" />
-    <Image Include="pintu.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

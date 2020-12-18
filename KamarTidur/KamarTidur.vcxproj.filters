@@ -32,10 +32,10 @@
     <Image Include="floor.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="pintu.bmp">
+    <Image Include="book.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Image.png">
+    <Image Include="book2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
