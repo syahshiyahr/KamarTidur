@@ -9,7 +9,7 @@ W/w = bergerak ke depan<br/>
 K/k = putar kamera ke kiri<br/>
 L/l = putar kamera ke kanan<br/>
 <br/>
-1 = menyalakan/mematikan lighting/lampu
+1 = menyalakan/mematikan lighting/lampu<br/>
 <br/>
 Anggota Kelompok<br/>
 Syahshiyah Rohidah - 185150200111006<br/>
