@@ -32,5 +32,11 @@
     <Image Include="floor.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="pintu.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Image.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

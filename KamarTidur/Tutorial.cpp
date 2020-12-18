@@ -2,6 +2,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <windows.h>
+#include <gl/glew.h>
 #include <gl/gl.h>
 #include <gl/glut.h>
 #include <gl/GLU.h>
@@ -65,6 +66,12 @@ GLfloat floor_ambient[] = { 0.176, 0.039, 0.059, 1.0 };
 GLfloat floor_diffuse[] = { 0.19, 0.3, 0.33, 1.0 };
 GLfloat floor_specular[] = { 0.184, 0.35, 0.35, 1.0 };
 GLfloat floor_shiness[] = { 15 };
+
+GLfloat kl_no_mat[] = { 0.0,0.0,0.0,1.0 };
+GLfloat kl_ambient[] = { 0.176, 0.039, 0.059, 1.0 };
+GLfloat kl_diffuse[] = { 0.19, 0.3, 0.33, 1.0 };
+GLfloat kl_specular[] = { 0.184, 0.35, 0.35, 1.0 };
+GLfloat kl_shiness[] = { 13 };
 
 void lighting(GLfloat no_mat[4], GLfloat mat_ambient[4], GLfloat mat_diffuse[4], GLfloat mat_specular[4], GLfloat shiness[1]) {
     if (ambient) {
@@ -312,8 +319,8 @@ void wall() {
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[1]);
     glPushMatrix();
-    glTranslatef(40, 10, 0);
-    glScalef(0.2, 20, 30);
+    glTranslatef(40, 10, 0); //posisi
+    glScalef(0.2, 20, 30); //ukuran
     cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -322,8 +329,18 @@ void wall() {
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[1]);
     glPushMatrix();
-    glTranslatef(25, 10, 15);
-    glScalef(30, 20, 0.2);
+    glTranslatef(25, 10, 15); //posisi
+    glScalef(30, 20, 0.2); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //depan
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    glPushMatrix();
+    glTranslatef(10, 10, 0); //posisi
+    glScalef(0.2, 20, 30); //ukuran
     cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -334,8 +351,31 @@ void floor() {
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[3]);
     glPushMatrix();
-    glTranslatef(25, 0, 0);
-    glScalef(30, 0.2, 30);
+    glTranslatef(25, 0, 0); //posisi
+    glScalef(30, 0.2, 30); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+
+void atap() {
+    lighting(floor_no_mat, floor_ambient, floor_diffuse, floor_specular, floor_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[3]);
+    glPushMatrix();
+    glTranslatef(25, 20, 0); //posisi
+    glScalef(30, 0.2, 30); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+
+void pintu() {
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[4]);
+    glPushMatrix();
+    glTranslatef(10, 6.5, 0); //posisi
+    glScalef(1, 13, 5); //ukuran
     cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -393,6 +433,41 @@ void bed() {
     glPushMatrix();
     glTranslatef(35, 3.8, 1.6); //posisi
     glScalef(3, 0.5, 3); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+
+void standingLamp() {
+    //kepalaLampu
+    lighting(kl_no_mat, kl_ambient, kl_diffuse, kl_specular, kl_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[5]);
+    glPushMatrix();
+    glTranslatef(36, 9, 12); //posisi
+    glScalef(2.5, 2.5, 2.5); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //tiang
+    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+    glPushMatrix();
+    glTranslatef(36, 4, 12); //posisi
+    glScalef(0.4, 8, 0.4); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //alas
+    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+    glPushMatrix();
+    glTranslatef(36, 0.1, 12); //posisi
+    glScalef(3, 0.1, 3); //ukuran
     cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
@@ -462,11 +537,13 @@ void display(void) {
 
     gluLookAt(cam_x, cam_height, cam_y, cam_x + cos(cam_angleX), cam_height, cam_y + sin(cam_angleY), 0, 1, 0);
 
-    
+    //menampilkan void
     wall();
     floor();
     bed();
-    
+    standingLamp();
+    atap();
+    pintu();
 
     //lighting in scene
     glEnable(GL_LIGHT0);
@@ -525,6 +602,8 @@ int main(int argc, char** argv) {
     loadTexture("mural.bmp", 1);
     loadTexture("blackwood.bmp", 2);
     loadTexture("floor.bmp", 3);
+    loadTexture("pintu.bmp", 4);
+    loadTexture("image.png", 5);
 
     glutDisplayFunc(display);
     glutKeyboardFunc(input_keyboard);
