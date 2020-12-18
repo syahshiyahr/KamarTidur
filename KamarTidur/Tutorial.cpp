@@ -18,6 +18,7 @@ using namespace std;
 float cam_angle = 0;
 float cam_x = 0;
 float cam_y = 0;
+float cam_z = 0;
 float cam_height = 6;
 float cam_rotate_speed = 0.003;
 float cam_distance = 40;
@@ -302,50 +303,32 @@ void cube(GLfloat size) {
     glEnd();
 }
 
-void wall() {
-    lighting(wall_no_mat, wall_ambient, wall_diffuse, wall_specular, wall_shiness);
-
-    //kiri
+//sasi
+void table() {
+    //table bawah laci
+    lighting(bed_head_no_mat, bed_head_ambient, bed_head_diffuse, bed_head_specular, bed_head_shiness);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
-    glTranslatef(25, 10, -15); //posisi
-    glScalef(30, 20, 0.2);  //ukuran
+    glTranslatef(36, 1, 7); //posisi
+    glScalef(5, 4, 4); //ukuran
     cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 
-    //belakang
+    //permukaan atas
+    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
-    glTranslatef(40, 10, 0); //posisi
-    glScalef(0.2, 20, 30); //ukuran
-    cube(1);
-    glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
-
-    //kanan
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[1]);
-    glPushMatrix();
-    glTranslatef(25, 10, 15); //posisi
-    glScalef(30, 20, 0.2); //ukuran
-    cube(1);
-    glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
-
-    //depan
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[1]);
-    glPushMatrix();
-    glTranslatef(10, 10, 0); //posisi
-    glScalef(0.2, 20, 30); //ukuran
+    glTranslatef(36, 3, 7); //posisi
+    glScalef(5.2, 0.5, 4.2); //ukuran
     cube(1);
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 }
 
+//sasi
 void floor() {
     lighting(floor_no_mat, floor_ambient, floor_diffuse, floor_specular, floor_shiness);
     glEnable(GL_TEXTURE_2D);
@@ -358,31 +341,9 @@ void floor() {
     glDisable(GL_TEXTURE_2D);
 }
 
-void atap() {
-    lighting(floor_no_mat, floor_ambient, floor_diffuse, floor_specular, floor_shiness);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[3]);
-    glPushMatrix();
-    glTranslatef(25, 20, 0); //posisi
-    glScalef(30, 0.2, 30); //ukuran
-    cube(1);
-    glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
-}
-
-void pintu() {
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture[4]);
-    glPushMatrix();
-    glTranslatef(10, 6.5, 0); //posisi
-    glScalef(1, 13, 5); //ukuran
-    cube(1);
-    glPopMatrix();
-    glDisable(GL_TEXTURE_2D);
-}
-
+//sasi
 void bed() {
-    //kasur
+    //bedframe
     lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
@@ -393,7 +354,7 @@ void bed() {
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
 
-    //tiang kasur
+    //penyangga kasur
     lighting(bed_head_no_mat, bed_head_ambient, bed_head_diffuse, bed_head_specular, bed_head_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
@@ -438,13 +399,92 @@ void bed() {
     glDisable(GL_TEXTURE_2D);
 }
 
+//hafez
+void atap() {
+    lighting(floor_no_mat, floor_ambient, floor_diffuse, floor_specular, floor_shiness);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[3]);
+    glPushMatrix();
+    glTranslatef(25, 20, 0); //posisi
+    glScalef(30, 0.2, 30); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+
+//hafez
+void wall() {
+    lighting(wall_no_mat, wall_ambient, wall_diffuse, wall_specular, wall_shiness);
+
+    //kiri
+    glEnable(GL_TEXTURE_2D); //nyalain texture
+    glBindTexture(GL_TEXTURE_2D, texture[1]); //manggil texture
+    glPushMatrix();
+    glTranslatef(25, 10, -15); //posisi
+    glScalef(30, 20, 0.2);  //ukuran
+    cube(1); //bentuk obejk
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //belakang
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    glPushMatrix();
+    glTranslatef(40, 10, 0); //posisi
+    glScalef(0.2, 20, 30); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //kanan
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    glPushMatrix();
+    glTranslatef(25, 10, 15); //posisi
+    glScalef(30, 20, 0.2); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //depan kiri
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    glPushMatrix();
+    glTranslatef(10, 10, -10.5); //posisi
+    glScalef(0.2, 20, 9); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //depan kiri
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    glPushMatrix();
+    glTranslatef(10, 10, 10.5); //posisi
+    glScalef(0.2, 20, 9); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+
+    //depan atas
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture[1]);
+    glPushMatrix();
+    glTranslatef(10, 16.5, 0); //posisi
+    glScalef(0.2, 7, 12); //ukuran
+    cube(1);
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+}
+
+//hafez
 void standingLamp() {
     //kepalaLampu
     lighting(kl_no_mat, kl_ambient, kl_diffuse, kl_specular, kl_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[5]);
     glPushMatrix();
-    glTranslatef(36, 9, 12); //posisi
+    glTranslatef(36, 9, -12); //posisi
     glScalef(2.5, 2.5, 2.5); //ukuran
     cube(1);
     glPopMatrix();
@@ -455,7 +495,7 @@ void standingLamp() {
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
-    glTranslatef(36, 4, 12); //posisi
+    glTranslatef(36, 4, -12); //posisi
     glScalef(0.4, 8, 0.4); //ukuran
     cube(1);
     glPopMatrix();
@@ -466,7 +506,7 @@ void standingLamp() {
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
-    glTranslatef(36, 0.1, 12); //posisi
+    glTranslatef(36, 0.1, -12); //posisi
     glScalef(3, 0.1, 3); //ukuran
     cube(1);
     glPopMatrix();
@@ -476,6 +516,7 @@ void standingLamp() {
 void input_keyboard(unsigned char key, int x, int y) {
     switch (key)
     {
+    //hafez
     case 'a':
     case 'A':
         cam_y = cam_y - 0.5;
@@ -492,6 +533,7 @@ void input_keyboard(unsigned char key, int x, int y) {
     case 'S':
         cam_x = cam_x - 0.5;
         break;
+    //sasi
     case 'l':
     case 'L':
         cam_angleX += .15;
@@ -504,11 +546,6 @@ void input_keyboard(unsigned char key, int x, int y) {
         break;
     case '1':
         ambient = !ambient;
-        break;
-    case '2':
-        diffuse = !diffuse;
-        break;
-    case '3':
         specular = !specular;
         break;
     case '0':
@@ -543,7 +580,8 @@ void display(void) {
     bed();
     standingLamp();
     atap();
-    pintu();
+    //pintu();
+    table();
 
     //lighting in scene
     glEnable(GL_LIGHT0);
@@ -596,7 +634,7 @@ int main(int argc, char** argv) {
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
 
-    
+    //yg ini jg masing2 obj
     glGenTextures(10, texture);
     loadTexture("bedsheet.bmp", 0);
     loadTexture("mural.bmp", 1);
