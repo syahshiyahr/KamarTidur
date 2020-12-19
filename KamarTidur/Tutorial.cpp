@@ -44,17 +44,17 @@ GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 GLfloat light_position[] = { 2.0, 25.0, 3.0, 1.0 };
 
-GLfloat bed_no_mat[] = { 0.0, 0.0, 0.0, 0.0 };
-GLfloat bed_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
-GLfloat bed_diffuse[] = { 1.0,1.0,1.0,1.0 };
-GLfloat bed_specular[] = { 1.0,1.0,1.0,1.0 };
-GLfloat bed_shiness[] = { 1 };
+GLfloat kasur_no_mat[] = { 1.0, 0.0, 0.0, 0.0 };
+GLfloat kasur_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
+GLfloat kasur_diffuse[] = { 1.0,1.0,1.0,1.0 };
+GLfloat kasur_specular[] = { 1.0,1.0,1.0,1.0 };
+GLfloat kasur_shiness[] = { 13 };
 
-GLfloat bed_head_no_mat[] = { 0.0,0.0,0.0,1.0 };
-GLfloat bed_head_ambient[] = { 0.276, 0.139, 0.159, 1.0 };
-GLfloat bed_head_diffuse[] = { 0.29, 0.4, 0.43, 1.0 };
-GLfloat bed_head_specular[] = { 0.184, 0.35, 0.35, 1.0 };
-GLfloat bed_head_shiness[] = { 13 };
+GLfloat sandaran_kasur_no_mat[] = { 0.0,0.0,0.0,1.0 };
+GLfloat sandaran_kasur_ambient[] = { 0.276, 0.139, 0.159, 1.0 };
+GLfloat sandaran_kasur_diffuse[] = { 0.29, 0.4, 0.43, 1.0 };
+GLfloat sandaran_kasur_specular[] = { 0.184, 0.35, 0.35, 1.0 };
+GLfloat sandaran_kasur_shiness[] = { 13 };
 
 GLfloat wall_no_mat[] = { 0.0,0.0,0.0,1.0 };
 GLfloat wall_ambient[] = { 0.373, 0.120, 0.827, 1.0 };
@@ -319,7 +319,7 @@ void floor() {
 //sasi
 void bed() {
     //bedframe
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    lighting(kasur_no_mat, kasur_ambient, kasur_diffuse, kasur_specular, kasur_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
@@ -330,7 +330,7 @@ void bed() {
     glDisable(GL_TEXTURE_2D);
 
     //penyangga kasur
-    lighting(bed_head_no_mat, bed_head_ambient, bed_head_diffuse, bed_head_specular, bed_head_shiness);
+    lighting(sandaran_kasur_no_mat, sandaran_kasur_ambient, sandaran_kasur_diffuse, sandaran_kasur_specular, sandaran_kasur_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
@@ -341,7 +341,7 @@ void bed() {
     glDisable(GL_TEXTURE_2D);
 
     //matrass
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    lighting(kasur_no_mat, kasur_ambient, kasur_diffuse, kasur_specular, kasur_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[0]);
     glPushMatrix();
@@ -352,7 +352,7 @@ void bed() {
     glDisable(GL_TEXTURE_2D);
 
     //bantal 1
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    lighting(kasur_no_mat, kasur_ambient, kasur_diffuse, kasur_specular, kasur_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[0]);
     glPushMatrix();
@@ -363,7 +363,7 @@ void bed() {
     glDisable(GL_TEXTURE_2D);
 
     //bantal 2
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    lighting(kasur_no_mat, kasur_ambient, kasur_diffuse, kasur_specular, kasur_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[0]);
     glPushMatrix();
@@ -377,7 +377,7 @@ void bed() {
 //sasi
 void table() {
     //table bawah laci
-    lighting(bed_head_no_mat, bed_head_ambient, bed_head_diffuse, bed_head_specular, bed_head_shiness); //menggunakan lighting yg sama dengan tiang kasur dengan lighting yang lebih gelap
+    lighting(sandaran_kasur_no_mat, sandaran_kasur_ambient, sandaran_kasur_diffuse, sandaran_kasur_specular, sandaran_kasur_shiness); //menggunakan lighting yg sama dengan tiang kasur dengan lighting yang lebih gelap
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
@@ -388,7 +388,7 @@ void table() {
     glDisable(GL_TEXTURE_2D);
 
     //permukaan atas
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness); //menggunakan lighting yang sama dengan kasur bawah dengan lighting yang lebih terang
+    lighting(kasur_no_mat, kasur_ambient, kasur_diffuse, kasur_specular, kasur_shiness); //menggunakan lighting yang sama dengan kasur bawah dengan lighting yang lebih terang
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
@@ -402,7 +402,7 @@ void table() {
 //sasi
 void objekAtasMeja() {
     //buku ats
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness); 
+    lighting(kasur_no_mat, kasur_ambient, kasur_diffuse, kasur_specular, kasur_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[6]);
     glPushMatrix();
@@ -413,7 +413,7 @@ void objekAtasMeja() {
     glDisable(GL_TEXTURE_2D);
 
     //buku bawah
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    lighting(kasur_no_mat, kasur_ambient, kasur_diffuse, kasur_specular, kasur_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[7]);
     glPushMatrix();
@@ -518,7 +518,7 @@ void standingLamp() {
     glDisable(GL_TEXTURE_2D);
 
     //tiang
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    lighting(kasur_no_mat, kasur_ambient, kasur_diffuse, kasur_specular, kasur_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
@@ -529,7 +529,7 @@ void standingLamp() {
     glDisable(GL_TEXTURE_2D);
 
     //alas
-    lighting(bed_no_mat, bed_ambient, bed_diffuse, bed_specular, bed_shiness);
+    lighting(kasur_no_mat, kasur_ambient, kasur_diffuse, kasur_specular, kasur_shiness);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture[2]);
     glPushMatrix();
@@ -663,13 +663,24 @@ int main(int argc, char** argv) {
 
     //mengambil file untuk texture
     glGenTextures(10, texture);
+    //texture sprei dan bantal
     loadTexture("bedsheet.bmp", 0);
-    loadTexture("mural.bmp", 1);
+    
+    //texture bedframe
     loadTexture("blackwood.bmp", 2);
-    loadTexture("floor.bmp", 3);
-    loadTexture("floor.bmp", 5);
+
+    //texture buku atas
     loadTexture("book2.bmp", 6);
+
+    //texture buku bawah
     loadTexture("book.bmp", 7);
+
+    //texture lantai
+    loadTexture("floor.bmp", 3);
+
+
+    loadTexture("mural.bmp", 1);
+    loadTexture("floor.bmp", 5);
     
 
     glutDisplayFunc(display);
