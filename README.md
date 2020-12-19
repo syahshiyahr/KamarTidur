@@ -11,6 +11,7 @@ L/l = putar kamera ke kanan<br/>
 <br/>
 1 = menyalakan/mematikan lighting/lampu<br/>
 <br/>
+Kelompok Sukses Proyekan<br/>
 Anggota Kelompok<br/>
 Syahshiyah Rohidah - 185150200111006<br/>
 Hafez Alvanro - 185150207111006<br/>
