@@ -1,4 +1,4 @@
-//import fungsi openGL
+
 #include <iostream>
 #include <stdlib.h>
 #include <windows.h>
